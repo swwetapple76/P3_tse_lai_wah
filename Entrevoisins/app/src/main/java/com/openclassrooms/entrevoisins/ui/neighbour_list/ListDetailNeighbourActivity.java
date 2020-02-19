@@ -12,12 +12,19 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 
+import java.util.Objects;
+
 public class ListDetailNeighbourActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_detail_neighbour);
+
+        setSupportActionBar( findViewById(R.id.widget_toolbar));
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
+
         // 4.	We modify the List DetailNeighbourActivity
         Intent intent = getIntent();
         // 4.a  crate String name for Intent
@@ -25,25 +32,15 @@ public class ListDetailNeighbourActivity extends AppCompatActivity {
         TextView personName = findViewById(R.id.person_name);
         personName.setText(name);
 
+        //Staring avatarImage
         String avatarImage = intent.getStringExtra("avatar");
         ImageView imageView = findViewById(R.id.detail_avatar);
+
+
+        // loading the image avatar
         Glide.with(this)
                 .load(avatarImage)
-                .apply(RequestOptions.noTransformation())
                 .into(imageView);
-
-
-        String address = intent.getStringExtra("address");
-        TextView addressNeighbour = findViewById(R.id.address);
-        addressNeighbour.setText(address);
-
-        String phone = intent.getStringExtra("phone");
-        TextView phoneNumber = findViewById(R.id.phone);
-        phoneNumber.setText(phone);
-
-        String webLink = intent.getStringExtra("webLink");
-        TextView faceBook = findViewById(R.id.webLink);
-        faceBook.setText(webLink);
 
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(name);
