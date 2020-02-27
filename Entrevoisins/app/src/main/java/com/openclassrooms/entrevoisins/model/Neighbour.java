@@ -15,19 +15,33 @@ public class Neighbour {
 
     /** Avatar */
     private String avatarUrl;
+    //b.	Add a Boolean for the class and constructor
+    /** Favorites */
+    private boolean favorites;
 
     /**
      * Constructor
      * @param id
      * @param name
      * @param avatarUrl
+     * @param favorites
      */
-    public Neighbour(Integer id, String name, String avatarUrl) {
+    public Neighbour(Integer id, String name, String avatarUrl,boolean favorites) {
         this.id = id;
         this.name = name;
         this.avatarUrl = avatarUrl;
+        //b.	Add a Boolean for the class and constructor
+        this.favorites = favorites;
+    }
+    //d.	Add Generate Getter and Setter
+    public boolean isFavorites() {
+        return favorites;
     }
 
+    public void setFavorites(boolean favorites) {
+        this.favorites = favorites;
+    }
+    //
     public Integer getId() {
         return id;
     }

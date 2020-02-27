@@ -2,6 +2,8 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,21 +23,23 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
-
-public class NeighbourFragment extends Fragment {
+/**
+ * Created by Lai Wah TSE on 2/18/2020.
+ */
+public class FavoritesFragment extends Fragment {
 
     private NeighbourApiService mApiService;
-    private List<Neighbour> mNeighbours;
-        private RecyclerView mRecyclerView;
+    private List<Neighbour> mFavoritesNeighbour;
+    private RecyclerView mRecyclerView;
 
 
     /**
      * Create and return a new instance
      * @return @{@link NeighbourFragment}
      */
-    public static NeighbourFragment newInstance() {
-        NeighbourFragment fragment = new NeighbourFragment();
-        return fragment;
+    public static FavoritesFragment newInstance() {
+        FavoritesFragment favoritesFragment = new FavoritesFragment();
+        return favoritesFragment;
     }
 
     @Override
@@ -48,10 +52,10 @@ public class NeighbourFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_neighbour_list, container, false);
-        Context context = view.getContext();
+        Context context = getActivity();
         mRecyclerView = (RecyclerView) view;
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         initList();
         return view;
     }
@@ -60,10 +64,14 @@ public class NeighbourFragment extends Fragment {
      * Init the List of neighbours
      */
     private void initList() {
-        mNeighbours = mApiService.getNeighbours();
-                //2.b   Modify the NeighbourFragment to get activity
-        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mNeighbours,getActivity()));
-     }
+
+        //e.3.2 Fav add method for list of Favorites
+        mFavoritesNeighbour=mApiService.getFavoriteNeighbours();
+
+        //2.b   Modify the NeighbourFragment to get activity
+
+        mRecyclerView.setAdapter(new MyNeighbourRecyclerViewAdapter(mFavoritesNeighbour,getActivity()));
+    }
 
     @Override
     public void onStart() {

@@ -15,6 +15,8 @@ public interface NeighbourApiService {
      * @return {@link List}
      */
     List<Neighbour> getNeighbours();
+    //e.2	Add getFavorites method, for interface
+    List<Neighbour> getFavoriteNeighbours();
 
     /**
      * Deletes a neighbour
