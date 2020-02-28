@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.Gson;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
@@ -52,7 +53,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
-        //3a.b.	Use Intent to link two activity and create onClickListener
+        /*//3a.b.	Use Intent to link two activity and create onClickListener
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,9 +64,17 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
                 mContext.startActivity(intent);
             }
+        });*/
+        // Gson
+        Gson gson = new Gson();
+        holder.itemView.setOnClickListener(v -> {
+
+            Context context= v.getContext();
+            Intent intent= new Intent(context, ListDetailNeighbourActivity.class);
+            intent.putExtra("Neighbour", gson.toJson(mNeighbours));
+            context.startActivity(intent);
+
         });
-
-
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

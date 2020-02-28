@@ -89,9 +89,9 @@ public class FavoritesFragment extends Fragment {
      * Fired if the user clicks on a delete button
      * @param event
      */
-    @Subscribe
+  /*  @Subscribe
     public void onDeleteNeighbour(DeleteNeighbourEvent event) {
         mApiService.deleteNeighbour(event.neighbour);
         initList();
-    }
+    }*/
 }

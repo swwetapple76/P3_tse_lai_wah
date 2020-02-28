@@ -73,7 +73,7 @@
         app:backgroundTint="#FFFFFF"
         app:layout_anchor="@id/detail_avatar"
         app:layout_anchorGravity="bottom|end"
-        app:rippleColor="#FFEB3B" />
+         />
 
 
 </android.support.design.widget.CoordinatorLayout>
