@@ -26,6 +26,7 @@ public class ListDetailNeighbourActivity extends AppCompatActivity {
     private NeighbourApiService mApiServices;
     Neighbour neighbour;
     FloatingActionButton mFavoritesButton;
+    int idNeighbour;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +50,10 @@ public class ListDetailNeighbourActivity extends AppCompatActivity {
         String strObj = getIntent().getStringExtra("Neighbour");
         neighbour = gson.fromJson(strObj, Neighbour.class);
 
-        Integer idNeighbour=neighbour.getId();
+
         String name = neighbour.getName();
         String neighbourAvatar = neighbour.getAvatarUrl();
-
-        favoriteNeighbour=neighbour.isFavorites();
+        mApiServices.getNeighbourById(idNeighbour).setFavorites(true);
 
           //Name Neighbour
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);
@@ -63,32 +63,38 @@ public class ListDetailNeighbourActivity extends AppCompatActivity {
         personName.setText(name);
 
         // Avatar
-        ImageView avatar = findViewById(R.id.detail_avatar);
+        ImageView detailAvatar = findViewById(R.id.detail_avatar);
+        RequestOptions options = new RequestOptions()
+                .centerCrop()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_foreground);
         Glide.with(this)
-                .load(avatar)
-                .into(avatar);
+                .load(neighbourAvatar)
+                .into(detailAvatar);
 
         // FAV 3.
-        mFavoritesButton = findViewById(R.id.fab_favorites);
+       mFavoritesButton = findViewById(R.id.fab_favorites);
         if (favoriteNeighbour) {
             mFavoritesButton.setImageDrawable(getDrawable(R.drawable.ic_star_yellow_24dp));
         }else
             mFavoritesButton.setImageDrawable(getDrawable(R.drawable.ic_star_border_black_24dp));
 
+        //15.FAV Modify ListDetaiActivity pour le click sur le button favori
         mFavoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (favoriteNeighbour){
                     mFavoritesButton.setImageDrawable(getDrawable(R.drawable.ic_star_yellow_24dp));
-                    mApiServices.getNeighbours(idNeighbour).setFavorite(true);
+                    mApiServices.getNeighbourById(neighbour.getId()).setFavorites(true);
                     favoriteNeighbour=true;
                 }else{
-                    mFavoritesButton.setImageDrawable(getDrawable(R.drawable.ic_star_yellow_24dp));
-                    mApiServices.getNeighbours(neighbour.getId()).setFavorite(false);
+                    mFavoritesButton.setImageDrawable(getDrawable(R.drawable.ic_star_border_black_24dp));
+                    mApiServices.getNeighbourById(neighbour.getId()).setFavorites(false);
                     favoriteNeighbour=false;
                 }
 
             }
         });
+
     }
 }

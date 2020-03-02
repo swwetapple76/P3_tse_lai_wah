@@ -18,6 +18,10 @@ public interface NeighbourApiService {
     //e.2	Add getFavorites method, for interface
     List<Neighbour> getFavoriteNeighbours();
 
+    //11. une méthode qui retourn Neighbour par son id
+    Neighbour getNeighbourById(int id);
+
+
     /**
      * Deletes a neighbour
      * @param neighbour

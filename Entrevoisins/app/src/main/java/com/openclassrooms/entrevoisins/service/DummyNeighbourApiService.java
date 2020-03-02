@@ -33,7 +33,12 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         }
         return favoriteNeighbour;
     }
+    //12. l'implémentation de la méthode retourn Neighbour par son id
 
+    @Override
+    public Neighbour getNeighbourById(int id) {
+        return neighbours.get(id);
+    }
     /**
      * {@inheritDoc}
      */
