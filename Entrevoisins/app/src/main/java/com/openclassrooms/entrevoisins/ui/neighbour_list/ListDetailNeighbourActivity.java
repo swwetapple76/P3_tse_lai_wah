@@ -83,7 +83,7 @@ public class ListDetailNeighbourActivity extends AppCompatActivity {
         mFavoritesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (favoriteNeighbour){
+                if (!favoriteNeighbour){
                     mFavoritesButton.setImageDrawable(getDrawable(R.drawable.ic_star_yellow_24dp));
                     mApiServices.getNeighbourById(neighbour.getId()).setFavorites(true);
                     favoriteNeighbour=true;

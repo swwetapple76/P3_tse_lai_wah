@@ -71,7 +71,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
 
             Context context= v.getContext();
             Intent intent= new Intent(context, ListDetailNeighbourActivity.class);
-            intent.putExtra("Neighbour", gson.toJson(mNeighbours));
+            intent.putExtra("Neighbour", gson.toJson(neighbour));
             context.startActivity(intent);
 
         });
