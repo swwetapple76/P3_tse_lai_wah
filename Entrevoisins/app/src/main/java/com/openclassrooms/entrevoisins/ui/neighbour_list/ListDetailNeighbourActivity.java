@@ -53,7 +53,7 @@ public class ListDetailNeighbourActivity extends AppCompatActivity {
 
         String name = neighbour.getName();
         String neighbourAvatar = neighbour.getAvatarUrl();
-        mApiServices.getNeighbourById(idNeighbour).setFavorites(true);
+        favoriteNeighbour=neighbour.isFavorites();
 
           //Name Neighbour
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.collapsing_toolbar);

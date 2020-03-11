@@ -1,6 +1,9 @@
 package com.openclassrooms.entrevoisins.model;
 
 import java.util.Objects;
+import java.util.Random;
+
+import static com.openclassrooms.entrevoisins.service.DummyNeighbourGenerator.NEW_NEIGHBOUR;
 
 /**
  * Model object representing a Neighbour
@@ -77,6 +80,10 @@ public class Neighbour {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public static Neighbour addNewNeighbour(){
+        return NEW_NEIGHBOUR.get(new Random().nextInt(NEW_NEIGHBOUR.size()));
     }
 
 

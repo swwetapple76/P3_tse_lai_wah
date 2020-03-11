@@ -21,6 +21,7 @@ public interface NeighbourApiService {
     //11. une méthode qui retourn Neighbour par son id
     Neighbour getNeighbourById(int id);
 
+    void addNeighbour(Neighbour neighbour);
 
     /**
      * Deletes a neighbour
