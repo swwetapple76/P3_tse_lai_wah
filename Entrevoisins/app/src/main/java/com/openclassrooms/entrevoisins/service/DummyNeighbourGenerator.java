@@ -10,11 +10,11 @@ public abstract class DummyNeighbourGenerator {
 
     public static List<Neighbour> DUMMY_NEIGHBOURS = Arrays.asList(
             //b.	Modify the DummyNeighbourGenerator and the favorites to the list
-            new Neighbour(0, "Caroline", "http://i.pravatar.cc/150?u=a042581f4e29026704d",false),
+            new Neighbour(0, "Caroline", "http://i.pravatar.cc/150?u=a042581f4e29026704d",true),
             new Neighbour(1, "Jack", "http://i.pravatar.cc/150?u=a042581f4e29026704e",false),
-            new Neighbour(2, "Chloé", "http://i.pravatar.cc/150?u=a042581f4e29026704f",false),
+            new Neighbour(2, "Chloé", "http://i.pravatar.cc/150?u=a042581f4e29026704f",true),
             new Neighbour(3, "Vincent", "http://i.pravatar.cc/150?u=a042581f4e29026704a",false),
-            new Neighbour(4, "Elodie", "http://i.pravatar.cc/150?u=a042581f4e29026704b",false),
+            new Neighbour(4, "Elodie", "http://i.pravatar.cc/150?u=a042581f4e29026704b",true),
             new Neighbour(5, "Sylvain", "http://i.pravatar.cc/150?u=a042581f4e29026704c",false),
             new Neighbour(6, "Laetitia", "http://i.pravatar.cc/150?u=a042581f4e29026703d",false),
             new Neighbour(7, "Dan", "http://i.pravatar.cc/150?u=a042581f4e29026703b",false),

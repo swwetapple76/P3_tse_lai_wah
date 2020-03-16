@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E7EBEA"
+    android:id="@+id/activity_detail_neighbour"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.neighbour_list.ListDetailNeighbourActivity"
     tools:showIn="@layout/activity_list_detail_neighbour">

@@ -58,6 +58,7 @@ public class NeighboursListTest {
     /**
      * When we delete an item, the item is no more shown
      */
+    //Test 3
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
         // Given : We remove the element at position 2
