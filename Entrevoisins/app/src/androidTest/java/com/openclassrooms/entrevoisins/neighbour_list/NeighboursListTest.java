@@ -16,10 +16,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static com.openclassrooms.entrevoisins.utils.RecyclerViewItemCountAssertion.withItemCount;
+import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsNull.notNullValue;
 
 
@@ -61,12 +67,23 @@ public class NeighboursListTest {
     //Test 3
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
-        // Given : We remove the element at position 2
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT));
-        // When perform a click on a delete icon
-        onView(ViewMatchers.withId(R.id.list_neighbours))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
-        // Then : the number of element is 11
-        onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
+        onView(allOf(withId(R.id.list_neighbours), isDisplayed()))
+                .check(withItemCount(ITEMS_COUNT))
+                .perform(actionOnItemAtPosition(2, new DeleteViewAction()));
+
+        onView(allOf(withId(R.id.list_neighbours), isDisplayed()))
+                .check(withItemCount(ITEMS_COUNT - 1));
     }
+
+    // Test 4
+    /*test vérifiant que l’onglet Favoris n’affiche que les voisins marqués comme
+    favoris.*/
+    @Test
+    public void favoriteNeighbourList_should_show_only_favouriteList() {
+
+        onView(withContentDescription("Favorites")).perform(click());
+
+        onView(allOf(withId(R.id.list_neighbours), isDisplayed())).check(withItemCount(0));
+    }
+
 }

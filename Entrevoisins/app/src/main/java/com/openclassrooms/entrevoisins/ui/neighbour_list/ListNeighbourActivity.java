@@ -11,8 +11,12 @@ import android.view.View;
 
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
+import com.openclassrooms.entrevoisins.events.AddNeighbourEvent;
+import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +28,7 @@ public class ListNeighbourActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     Context mContext;
+    Neighbour neighbour;
 
 
     // UI Components
@@ -54,9 +59,9 @@ public class ListNeighbourActivity extends AppCompatActivity {
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               mApiServices.addNeighbour(Neighbour.addNewNeighbour());
-            }
-        });
+                EventBus.getDefault().post(new AddNeighbourEvent(neighbour));
+    }
+});
 
     }
 

@@ -42,6 +42,8 @@ public class NeighbourServiceTest {
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
     }
 //Test 5
+/*Création d’un test unitaire pour chaque fonctionnalité.*/
+
     @Test
     public void ChangeNeighbourFavoriteStatus(){
         service.getNeighbours().get(1).setFavorites(false);

@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -43,8 +44,25 @@ public class ListDetailNeighbourActivityTest {
          assertThat(mServices, notNullValue());
      }
 
-     //Test 2
+    // Test 1
+    /*test vérifiant que lorsqu’on clique sur un élément de la liste,
+    l’écran de détails est bien lancé ;*/
+    @Test
+    public void click_item_to_ListDetailNeighbourActivity(){
 
+        String ITEM_NAME= "Caroline";
+
+        onView(allOf(withId(R.id.list_neighbours),isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0,click()));
+
+        onView(withId(R.id.activity_detail_neighbour)).check(matches(isDisplayed()));
+
+        onView(allOf(withId(R.id.person_name),isDisplayed())).check(matches(withText(ITEM_NAME)));
+    }
+
+     //Test 2
+    /*test vérifiant qu’au démarrage de ce nouvel écran, le TextView indiquant le nom de
+    l’utilisateur en question est bien rempli ;*/
     @Test
     public void listDetailNeighbourActivity_name_isDisplay(){
         onView((allOf(withId(R.id.person_name),isDisplayed())))
